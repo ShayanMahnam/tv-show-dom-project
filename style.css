@@ -136,6 +136,7 @@ p{
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 10px;
+  gap: 1rem;
 }
 
 img{
