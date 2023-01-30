@@ -38,36 +38,44 @@ function displayEpisodesWithSearch(episodes) {
     if (select.value === "all") {
       filteredEpisodes = episodes;
     } else {
-      filteredEpisodes = episodes.filter(ep => ep.id === select.value);
+      filteredEpisodes = episodes.filter(ep => select.value.includes(ep.id) );
     }
     count = 0;
     list.innerHTML = "";
     filteredEpisodes.forEach(function (episode) {
       const episodeCode = `S${("0" + episode.season).slice(-2)}E${("0" + episode.number).slice(-2)}`;
-      const item = document.createElement("li");
-      const image = document.createElement("img");
-      image.src = episode.image.medium;
-      item.innerHTML = `${episode.name} - `;
-      item.innerHTML += `${episodeCode}<br>`;
-      item.appendChild(image);
-      item.innerHTML += `${episode.summary}`;
-      list.appendChild(item);
-      count++;
+        const item = document.createElement("li");
+        const title =  document.createElement("h3")
+        const image = document.createElement("img");
+        const sum = document.createElement("p")
+        image.src = episode.image.medium;
+        title.innerText = `${episode.name} - ${episodeCode}`;
+        sum.innerHTML = episode.summary; 
+
+        item.appendChild(title)
+        item.appendChild(image);
+        item.appendChild(sum)
+        list.appendChild(item);
+        count++;
     });
     countSpan.innerHTML = `${count} episode(s) found out of 73`;
   });
 
 
   // Display all episodes initially
-  episodes.forEach(function (episode) {
+   episodes.forEach(function (episode) {
     const episodeCode = `S${("0" + episode.season).slice(-2)}E${("0" + episode.number).slice(-2)}`;
         const item = document.createElement("li");
+        const title =  document.createElement("h3")
         const image = document.createElement("img");
+        const sum = document.createElement("p")
         image.src = episode.image.medium;
-        item.innerHTML = `${episode.name} - `;
-        item.innerHTML += `${episodeCode}<br>`;
+        title.innerText = `${episode.name} - ${episodeCode}`;
+        sum.innerHTML = episode.summary; 
+
+        item.appendChild(title)
         item.appendChild(image);
-        item.innerHTML += `${episode.summary}`;
+        item.appendChild(sum)
         list.appendChild(item);
         count++;
   });
@@ -87,13 +95,16 @@ function displayEpisodesWithSearch(episodes) {
       ) {
         const episodeCode = `S${("0" + episode.season).slice(-2)}E${("0" + episode.number).slice(-2)}`;
         const item = document.createElement("li");
+        const title =  document.createElement("h3")
         const image = document.createElement("img");
+        const sum = document.createElement("p")
         image.src = episode.image.medium;
-        item.innerHTML = `${episode.name} - `;
-        item.innerHTML += `${episodeCode}<br>`;
-        
+        title.innerText = `${episode.name} - ${episodeCode}`;
+        sum.innerHTML = episode.summary; 
+
+        item.appendChild(title)
         item.appendChild(image);
-        item.innerHTML += `${episode.summary}`;
+        item.appendChild(sum)
         list.appendChild(item);
         count++;
       }
@@ -105,4 +116,5 @@ function displayEpisodesWithSearch(episodes) {
   appHeader.appendChild(countSpan);
   main.appendChild(list);
 }
+
 

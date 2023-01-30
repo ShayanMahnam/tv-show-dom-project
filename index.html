@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat&family=Roboto&family=Secular+One&display=swap"
+      rel="stylesheet">
     <title>TV Show Project | ShayanMahnam</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -10,7 +15,19 @@
 
   <body>
   <header>
-    <h1>Shayan Film</h1>
+    <svg viewBox="0 0 960 300">
+      <symbol id="s-text">
+        <text text-anchor="middle" x="50%" y="80%">Shayan Film</text>
+      </symbol>
+    
+      <g class="g-ants">
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+      </g>
+    </svg>
     <h2>TV Show DOM Project</h2>
   </header>
 
@@ -18,6 +35,10 @@
     <div id="head-app" class="head-app"></div>
 
   </main>
+
+  <footer>
+    <p class="footer-text"> data sourced from <a href="https://www.tvmaze.com/api" target="_blank">TV-Maze-API</a></p>
+  </footer>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
