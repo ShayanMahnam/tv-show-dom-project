@@ -14,14 +14,10 @@ const appHeader = document.getElementById("head-app")
 const list = document.createElement("ul");
 let count = 0;
 
-const select = document.createElement("select");
-const allOption = document.createElement("option");
-
-const searchInput = document.createElement("input");
-searchInput.type = "text";
-searchInput.placeholder = "Search";
+// hole function need to refactor it
 
 function displayEpisodesWithSearch(episodes) {
+  // initial assigning variables
   let count = 0;
   const searchInput = document.createElement("input");
   searchInput.type = "text";
@@ -29,10 +25,13 @@ function displayEpisodesWithSearch(episodes) {
 
   const select = document.createElement("select");
   const allOption = document.createElement("option");
+
+  // first option for all episodes
   allOption.value = "all";
   allOption.innerHTML = "All episodes";
   select.appendChild(allOption);
 
+  // display the rest of select options
   episodes.forEach(function (episode) {
     const episodeCode = `S${("0" + episode.season).slice(-2)}E${("0" + episode.number).slice(-2)}`;
     const option = document.createElement("option");
@@ -41,6 +40,7 @@ function displayEpisodesWithSearch(episodes) {
     select.appendChild(option);
   });
 
+  // dropBox event
   select.addEventListener("change", function () {
     let filteredEpisodes = [];
     if (select.value === "all") {
@@ -87,11 +87,14 @@ function displayEpisodesWithSearch(episodes) {
         list.appendChild(item);
         count++;
   });
-  
+
+  // display counting
   const countSpan = document.createElement("span");
   countSpan.innerHTML = `${count} episode(s) found out of 73`;
   main.appendChild(countSpan);
   
+
+  // searching function
   searchInput.addEventListener("input", function () {
     const searchTerm = searchInput.value.toLowerCase();
     list.innerHTML = "";
