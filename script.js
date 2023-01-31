@@ -66,7 +66,7 @@ function displayEpisodesWithSearch(episodes) {
         list.appendChild(item);
         count++;
     });
-    countSpan.innerHTML = `${count} episode(s) found out of 73`;
+    countSpan.innerHTML = `${count} episode(s) found out of ${episodes.length}`;
   });
 
 
@@ -90,7 +90,7 @@ function displayEpisodesWithSearch(episodes) {
 
   // display counting
   const countSpan = document.createElement("span");
-  countSpan.innerHTML = `${count} episode(s) found out of 73`;
+  countSpan.innerHTML = `${count} episode(s) found out of ${episodes.length}`;
   main.appendChild(countSpan);
   
 
@@ -120,7 +120,7 @@ function displayEpisodesWithSearch(episodes) {
         count++;
       }
     });
-    countSpan.innerHTML = `${count} episode(s) found out of 73`;
+    countSpan.innerHTML = `${count} episode(s) found out of ${episodes.length}`;
   });
   appHeader.appendChild(select);
   appHeader.appendChild(searchInput);
