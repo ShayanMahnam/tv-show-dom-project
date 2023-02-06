@@ -2,6 +2,7 @@ async function fetchAllShows() {
   try {
   const response = await fetch (`https://api.tvmaze.com/shows`);
   const data = await response.json();
+  console.log(data);
   return data;
         
     } catch (error) {
@@ -51,8 +52,9 @@ function makeSeasonAndEpisode(episode) {
 }
 
 async function countShows(shows){
+  const allShows = await fetchAllShows()
   const countParagraph = document.getElementById("count-episodes")
-  countParagraph.innerText = `Displaying show(s) ${shows.length}/${shows.length}`;
+  countParagraph.innerText = `Displaying show(s) ${shows.length}/${allShows.length}`;
 }
 
 async function countEpisodes(episodes){
@@ -122,7 +124,22 @@ function makePageForEpisodes(episodeList) {
 const searchInput = document.getElementById("search-input");
 searchInput.addEventListener("input", async (e) => {
   const select = document.getElementById("drop-shows").value
-  const episodes = await fetchAllEpisodes(select);
+
+  if(select === 'all-shows'){
+    const shows = await fetchAllShows()
+    const searchTerms = e.target.value.toLowerCase();
+
+    const filteredEpisodes = shows.filter((episode) => {
+    // localeCompare might be neater here
+    return (
+      episode.summary.toLowerCase().includes(searchTerms) ||
+      episode.name.toLowerCase().includes(searchTerms)
+    );
+  });
+  makePageForShows(filteredEpisodes);
+  }
+  else{
+    const episodes = await fetchAllEpisodes(select);
 
   const searchTerms = e.target.value.toLowerCase();
   const filteredEpisodes = episodes.filter((episode) => {
@@ -133,6 +150,8 @@ searchInput.addEventListener("input", async (e) => {
     );
   });
   makePageForEpisodes(filteredEpisodes);
+  }
+  
 });
 
 const dropEpisodes = document.getElementById("drop-episodes")
