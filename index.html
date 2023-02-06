@@ -32,18 +32,25 @@
     <h2>TV Show DOM Project</h2>
   </header>
   <main>
+
     <div id="head-app" class="head-app">
+      <select name="Shows" id="drop-shows">
+        <option value="all-shows">All Shows</option>
+      </select>
+
       <select name="episodes" id="drop-episodes">
         <option value="all">All Episodes</option>
       </select>
+
       <input id="search-input" type="text" placeholder="Search">
+
       <span id="count-episodes"></span>
+
     </div>
+
     <div class="container">
       <ul id="root" class="root"></ul>
     </div>
-
-
 
   </main>
   <footer>

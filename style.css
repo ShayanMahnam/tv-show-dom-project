@@ -15,6 +15,7 @@ sans-serif;*/
 
 body {
   background-color: #263159;
+  
 }
 
 header {
@@ -122,13 +123,14 @@ h3 {
 
 p {
   font-size: 13px;
-  padding: .5rem;
+  padding: 1rem;
   border-radius: 50px;
   text-align: justify;
   color: white;
   width: 100%;
   font-family: 'Secular One',
     sans-serif;
+  overflow-y: scroll;
 }
 
 .head-app {
