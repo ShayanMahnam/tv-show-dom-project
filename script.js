@@ -2,7 +2,6 @@ async function fetchAllShows() {
   try {
   const response = await fetch (`https://api.tvmaze.com/shows`);
   const data = await response.json();
-  console.log(data);
   return data;
         
     } catch (error) {
@@ -14,8 +13,6 @@ async function fetchAllEpisodes(showId) {
    
     const response = await fetch (`https://api.tvmaze.com/shows/${showId}/episodes`);
     const data = await response.json();
-    console.log("fetchAllEpisodes function ran:");
-    console.log(data);
     return data;
 }
 
