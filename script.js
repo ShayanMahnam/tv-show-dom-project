@@ -26,7 +26,11 @@ async function setup() {
 }
 
 function createOptionsShows(shows){
-  shows.forEach(function (show) {
+  shows.sort((a,b)=> {
+   if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  }).forEach(function (show) {
     const option = document.createElement("option");
     option.value = show.id;
     option.innerHTML = `${show.name}`
@@ -192,6 +196,7 @@ dropShows.addEventListener('change',async (e) => {
       rootElem.innerHTML = "";
       dropEpisodes.innerHTML = "";
       createAllEpisodesOption()
+      createOptionsShows(shows)
       makePageForShows(shows) 
     }
     else{
