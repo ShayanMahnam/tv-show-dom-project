@@ -20,8 +20,6 @@ async function fetchAllEpisodes(showId) {
 
 async function setup() {
   const allShows= await fetchAllShows();
-  createOptionsShows(allShows)
-  countShows(allShows)
   makePageForShows(allShows)
 }
 
@@ -79,6 +77,7 @@ async function countEpisodes(episodes){
 function makePageForShows(showsList){
   rootElem.innerHTML = "";
 
+  createOptionsShows(showsList)
   countShows(showsList)
 
   showsList.forEach((show) => {
