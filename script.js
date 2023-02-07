@@ -173,7 +173,7 @@ dropShows.addEventListener('change',async (e) => {
  
   const select = e.target.value;
   const shows = await fetchAllShows()
-  const episodes = await fetchAllEpisodes(select);
+  
   
   
     if(select === 'all-shows'){
@@ -181,6 +181,7 @@ dropShows.addEventListener('change',async (e) => {
       makePageForShows(shows) 
     }
     else{
+      const episodes = await fetchAllEpisodes(select);
       createOptions(episodes)
       makePageForEpisodes(episodes)
     }
