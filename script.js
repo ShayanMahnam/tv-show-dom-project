@@ -2,7 +2,7 @@ async function fetchAllShows() {
   try {
   const response = await fetch (`https://api.tvmaze.com/shows`);
   const data = await response.json();
-  console.log(data);
+  
   return data;
         
     } catch (error) {
@@ -32,6 +32,13 @@ function createOptionsShows(shows){
     option.innerHTML = `${show.name}`
     dropShows.appendChild(option);
 })
+}
+
+function createAllEpisodesOption(){
+  const option = document.createElement("option")
+  option.textContent = "All Episodes";
+  option.value = "all";
+  dropEpisodes.appendChild(option);
 }
 
 function createOptions(episodes) {
@@ -132,7 +139,6 @@ searchInput.addEventListener("input", async (e) => {
     const filteredEpisodes = shows.filter((episode) => {
     // localeCompare might be neater here
     return (
-      episode.summary.toLowerCase().includes(searchTerms) ||
       episode.name.toLowerCase().includes(searchTerms)
     );
   });
@@ -156,32 +162,41 @@ searchInput.addEventListener("input", async (e) => {
 
 const dropEpisodes = document.getElementById("drop-episodes")
 dropEpisodes.addEventListener("change",async (e) =>{
+
+  const select = e.target.value;
   const selectShow = document.getElementById("drop-shows").value
   const episodes = await fetchAllEpisodes(selectShow);
-  const select = e.target.value;
+  
   const filteredEpisodes = episodes.filter((episode) => {
     // localeCompare might be neater here
     return (
       select.includes(episode.id) 
     );
   });
-   select === "all" ? makePageForEpisodes(episodes) : makePageForEpisodes(filteredEpisodes)
+
+   if(select === "all"){
+    makePageForEpisodes(episodes)
+   }
+   else{
+    makePageForEpisodes(filteredEpisodes)
+   }
 })
 
 const dropShows = document.getElementById("drop-shows")
 dropShows.addEventListener('change',async (e) => {
  
   const select = e.target.value;
-  const shows = await fetchAllShows()
-  
-  
   
     if(select === 'all-shows'){
+      const shows = await fetchAllShows()
       rootElem.innerHTML = "";
+      dropEpisodes.innerHTML = "";
+      createAllEpisodesOption()
       makePageForShows(shows) 
     }
     else{
       const episodes = await fetchAllEpisodes(select);
+      
       createOptions(episodes)
       makePageForEpisodes(episodes)
     }
