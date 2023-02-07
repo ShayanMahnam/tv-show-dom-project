@@ -179,9 +179,11 @@ dropEpisodes.addEventListener("change",async (e) =>{
 
    if(select === "all"){
     makePageForEpisodes(episodes)
+    searchInput.value = ''
    }
    else{
     makePageForEpisodes(filteredEpisodes)
+    searchInput.value = ''
    }
 })
 
@@ -194,6 +196,7 @@ dropShows.addEventListener('change',async (e) => {
       const shows = await fetchAllShows()
       rootElem.innerHTML = "";
       dropEpisodes.innerHTML = "";
+      searchInput.value = ''
       createAllEpisodesOption()
       createOptionsShows(shows)
       makePageForShows(shows) 
@@ -201,6 +204,7 @@ dropShows.addEventListener('change',async (e) => {
     else{
       const episodes = await fetchAllEpisodes(select);
       dropEpisodes.innerHTML = "";
+      searchInput.value = ''
       createAllEpisodesOption()
       createOptions(episodes)
       makePageForEpisodes(episodes)
