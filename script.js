@@ -196,7 +196,8 @@ dropShows.addEventListener('change',async (e) => {
     }
     else{
       const episodes = await fetchAllEpisodes(select);
-      
+      dropEpisodes.innerHTML = "";
+      createAllEpisodesOption()
       createOptions(episodes)
       makePageForEpisodes(episodes)
     }
