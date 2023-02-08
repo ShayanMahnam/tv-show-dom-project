@@ -19,10 +19,14 @@ async function fetchShow(showId){
 }
 
 async function fetchAllEpisodes(showId) {
-   
+   try {
     const response = await fetch (`https://api.tvmaze.com/shows/${showId}/episodes`);
     const data = await response.json();
     return data;
+   } catch (error) {
+   return error
+   }
+    
 }
 
 // initial website
