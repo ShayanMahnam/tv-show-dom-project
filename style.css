@@ -322,6 +322,7 @@ a:hover {
 
     .head-app-shows {
       gap: .5rem;
+      flex-direction: column;
     }
 
     button {
