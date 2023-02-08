@@ -362,6 +362,7 @@ function showDisplay(show){
       createOptionsShows(shows)
       searchInput.value = ''
       dropShows.value = `${id}`
+      countEpisodes(episodes)
     })
 
     // add the season and episode and name
