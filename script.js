@@ -1,3 +1,5 @@
+// Fetches
+
 async function fetchAllShows() {
   try {
   const response = await fetch (`https://api.tvmaze.com/shows`);
@@ -23,11 +25,12 @@ async function fetchAllEpisodes(showId) {
     return data;
 }
 
-
+// initial website
 async function setup() {
   const allShows= await fetchAllShows();
   showsDisplay(allShows)
 }
+
 
 function createOptionsNewDisplay(shows){
   shows.sort((a,b)=> {
@@ -53,6 +56,13 @@ function createOptionsShows(shows){
     option.innerHTML = `${show.name}`
     dropShows.appendChild(option);
 })
+}
+
+function createAllShowOption(){
+  const option = document.createElement("option")
+  option.textContent = "All Shows";
+  option.value = "all-shows";
+  dropNewDisplay.appendChild(option);
 }
 
 function createAllEpisodesOption(){
@@ -249,6 +259,8 @@ function showsDisplay(showsList){
   appHeader.style.display = "none"
   appHeaderNewDisplay.style.display = "flex"
 
+  dropNewDisplay.innerHTML = ''
+  createAllShowOption()
   createOptionsNewDisplay(showsList)
   foundShows(showsList)
   
@@ -389,7 +401,7 @@ dropNewDisplay.addEventListener('change',async (e) => {
  
   const select = e.target.value;
   
-    if(select === 'all-search-shows'){
+    if(select === 'all-shows'){
       const shows = await fetchAllShows()
       rootElem.innerHTML = "";
       searchInput.value = '';
@@ -404,5 +416,22 @@ dropNewDisplay.addEventListener('change',async (e) => {
     }
 })
 
+searchNewDisplay.addEventListener("input",async (e)=>{
+  const searchTerms = e.target.value.toLowerCase()
+  const shows = await fetchAllShows()
+
+  const filteredEpisodes = shows.filter((episode) => {
+    // localeCompare might be neater here
+    return (
+       episode.summary.toLowerCase().includes(searchTerms) ||
+      episode.name.toLowerCase().includes(searchTerms)
+    );
+  });
+
+  dropNewDisplay.innerHTML = ''
+  createAllShowOption()
+  showsDisplay(filteredEpisodes)
+
+})
 
 window.onload = setup;
