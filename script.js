@@ -288,8 +288,10 @@ function showsDisplay(showsList){
       makePageForEpisodes(episodes)
       createOptions(episodes)
       createOptionsShows(shows)
+      
       searchInput.value = ''
       dropShows.value = `${id}`
+      countEpisodes(episodes)
     })
 
     // add the season and episode and name
