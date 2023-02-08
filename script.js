@@ -381,6 +381,7 @@ button.addEventListener("click",async ()=>{
   const shows = await fetchAllShows()
   dropNewDisplay.value = "all-search-shows"
   searchNewDisplay.value = ''
+  dropEpisodes.value = "all"
   showsDisplay(shows)
 })
 
@@ -398,6 +399,7 @@ dropNewDisplay.addEventListener('change',async (e) => {
     else{
       const show = await fetchShow(select);
       searchInput.value = ''
+      
       showDisplay(show)
     }
 })
