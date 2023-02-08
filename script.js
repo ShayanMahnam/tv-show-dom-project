@@ -46,6 +46,8 @@ function createOptionsNewDisplay(shows){
 }
 
 function createOptionsShows(shows){
+  dropShows.innerHTML = ''
+  createAllShowOptionOldDisplay()
   shows.sort((a,b)=> {
    if (a.name < b.name) return -1;
     if (a.name > b.name) return 1;
@@ -56,6 +58,12 @@ function createOptionsShows(shows){
     option.innerHTML = `${show.name}`
     dropShows.appendChild(option);
 })
+}
+function createAllShowOptionOldDisplay(){
+  const option = document.createElement("option")
+  option.textContent = "All Shows";
+  option.value = "all-shows";
+  dropShows.appendChild(option);
 }
 
 function createAllShowOption(){
@@ -73,6 +81,8 @@ function createAllEpisodesOption(){
 }
 
 function createOptions(episodes) {
+  dropEpisodes.innerHTML = ''
+  createAllEpisodesOption()
   episodes.forEach(function (episode) {
     const option = document.createElement("option");
     option.value = episode.id;
@@ -111,6 +121,7 @@ async function countEpisodes(episodes){
 function makePageForShows(showsList){
   rootElem.innerHTML = "";
 
+  dropShows.innerHTML = ''
   createOptionsShows(showsList)
   countShows(showsList)
 
@@ -146,6 +157,7 @@ function makePageForEpisodes(episodeList) {
   appHeader.style.display = "flex"
   
   countEpisodes(episodeList)
+  
 
   episodeList.forEach((episode) => {
     // add list
@@ -234,7 +246,6 @@ dropShows.addEventListener('change',async (e) => {
       dropEpisodes.innerHTML = "";
       searchInput.value = ''
       createAllEpisodesOption()
-      createOptionsShows(shows)
       makePageForShows(shows) 
     }
     else{
@@ -273,9 +284,11 @@ function showsDisplay(showsList){
 
     item.addEventListener("click", async () =>{
       const episodes = await fetchAllEpisodes(id)
+      const shows = await fetchAllShows()
       makePageForEpisodes(episodes)
       createOptions(episodes)
-      createOptionsShows(showsList)
+      createOptionsShows(shows)
+      searchInput.value = ''
       dropShows.value = `${id}`
     })
 
@@ -337,9 +350,11 @@ function showDisplay(show){
 
     item.addEventListener("click", async () =>{
       const episodes = await fetchAllEpisodes(id)
+      const shows = await fetchAllShows()
       makePageForEpisodes(episodes)
       createOptions(episodes)
-      createOptionsShows(showsList)
+      createOptionsShows(shows)
+      searchInput.value = ''
       dropShows.value = `${id}`
     })
 
@@ -411,7 +426,6 @@ dropNewDisplay.addEventListener('change',async (e) => {
     else{
       const show = await fetchShow(select);
       searchInput.value = ''
-      
       showDisplay(show)
     }
 })
