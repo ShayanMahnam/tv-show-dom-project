@@ -89,6 +89,7 @@ ul {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 1rem;
   gap: .5rem;
 }
 
@@ -103,6 +104,37 @@ li {
   padding: 1rem;
   border-radius: 50px;
   background: #495579;
+}
+
+.li-shows{
+  width: 100%;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.li-shows:hover{
+  background: #840037;
+}
+
+.picture-details{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.details{
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 2rem;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
 }
 
 h2 {
@@ -121,6 +153,14 @@ h3 {
     sans-serif;
 }
 
+h5{
+  text-align: center;
+    color: white;
+    width: 100%;
+    font-family: 'Roboto',
+      sans-serif;
+}
+
 p {
   font-size: 13px;
   padding: 1rem;
@@ -133,7 +173,27 @@ p {
   overflow-y: scroll;
 }
 
+
+
+.summary{
+  font-size: 13px;
+    padding: .5rem;
+    border-radius: 50px;
+    text-align: justify;
+    color: white;
+    font-family: 'Secular One',
+      sans-serif;
+}
+
 .head-app {
+  display: none;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  
+}
+.head-app-shows {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -144,6 +204,31 @@ p {
 img {
   width: auto;
   border-radius: 10px;
+}
+
+.image-shows {
+  width: 200px;
+}
+
+button{
+  width: 250px;
+    height: 50px;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.27);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.7px);
+    -webkit-backdrop-filter: blur(6.7px);
+    border: 1px solid rgba(255, 255, 255, 0.79);
+    color: white;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition:all .2s ease-in-out;
+}
+
+button:hover{
+  background: rgba(225, 5, 5, 0.27);
 }
 
 input {
@@ -234,6 +319,17 @@ a:hover {
   .head-app {
     gap: .5rem;
   }
+
+    .head-app-shows {
+      gap: .5rem;
+    }
+
+    button {
+      width: 150px;
+      height: 20px;
+      font-size: 12px;
+      padding: 0px;
+    }
 
   svg {
     margin-top: -50px;
