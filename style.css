@@ -330,7 +330,34 @@ a:hover {
       font-size: 12px;
       padding: 0px;
     }
+    
+    .li-shows{
+      border: 1px solid white;
+        width: 300px;
+        height: 520px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+        padding: 1rem;
+        border-radius: 50px;
+        background: #495579;
+    }
 
+    .picture-details{
+      flex-direction: column;
+      
+    }
+
+        .image-shows {
+          width: auto;
+        }
+    .details{
+      border: none;
+    }
+    .summary{
+      display: none;
+    }
   svg {
     margin-top: -50px;
     font: 7.5em 'Montserrat';
