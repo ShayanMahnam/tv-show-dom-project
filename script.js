@@ -296,6 +296,7 @@ function showsDisplay(showsList){
       searchInput.value = ''
       dropShows.value = `${id}`
       countEpisodes(episodes)
+      window.scrollTo(0,0)
     })
 
     // add the season and episode and name
@@ -363,6 +364,7 @@ function showDisplay(show){
       searchInput.value = ''
       dropShows.value = `${id}`
       countEpisodes(episodes)
+      window.scrollTo(0,0)
     })
 
     // add the season and episode and name
